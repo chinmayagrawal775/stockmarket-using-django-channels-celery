@@ -1,0 +1,101 @@
+{% extends 'base/base.html' %}
+{% load stockinfofilter %}
+{% block title %}Stocks Information{% endblock title %}
+{% block maincontent %}
+
+{% if stock_details %}
+    <table class="table table-striped text-center table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Sr. No.</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Price</th>
+                <th scope="col">Change</th>
+                <th scope="col">Open</th>
+                <th scope="col">Previous Close</th>
+                <th scope="col">M-Cap</th>
+                <th scope="col">Stock Details</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {% for stock, stock_detail in stock_details.items %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{stock}}</td>
+                    <td id="{{stock}}_price">{{ stock_detail|get:"Quote Price" }}</td>
+                    <td id="{{stock}}_change" class="change">{{ stock_detail|getchange }}</td>
+                    <td id="{{stock}}_open">{{ stock_detail|get:"Open" }}</td>
+                    <td id="{{stock}}_prevclose">{{ stock_detail|get:"Previous Close" }}</td>
+                    <td id="{{stock}}_mcap">{{ stock_detail|get:"Market Cap" }}</td>
+                    <td><button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#{{stock|removedot}}">View details</button></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% for stock, stock_detail in stock_details.items %}
+        <div class="modal fade" id="{{stock|removedot}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Stock Details for: {{stock}}</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="m-0"><span class="fw-bold">Stock Name: </span> {{stock}}</p>
+                        <p class="m-0"><span class="fw-bold">Price:</span> {{ stock_detail|get:"Quote Price" }}</p>
+                        <p class="m-0"><span class="fw-bold">M Cap:</span> {{ stock_detail|get:"Market Cap" }}</p>
+                        <p class="m-0"><span class="fw-bold">Open</span> {{ stock_detail|get:"Open" }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <h1 class="alert alert-info text-center mt-5">You Have Not Selected Any Stocks Yet</h1>
+{% endif %}
+
+{% endblock maincontent %}
+
+
+{% block custom-js %}
+
+<script>
+    var queryString = window.location.search.substring(1);
+    const stockSocket = new WebSocket('ws://' + window.location.host + '/ws/asc/stockupdater/' + '?' + queryString);
+    
+    var elements = document.getElementsByClassName("change")
+    for (var i = 0; i < elements.length; i++) {
+        var change = Number(elements[i].innerHTML)
+        if(change > 0){
+            elements[i].style.color = "green"
+        } else {
+            elements[i].style.color = "red"
+        }
+    }
+    stockSocket.onmessage = function(e) {
+        console.log(e.data)
+        const stock_details = JSON.parse(e.data)
+        console.log(stock_details)
+        for (const [stock, stock_detail] of Object.entries(stock_details)) {
+            document.getElementById(stock + '_price').innerHTML = stock_detail['Quote Price'];
+            document.getElementById(stock + '_open').innerHTML = stock_detail['Open'];
+            document.getElementById(stock + '_prevclose').innerHTML = stock_detail['Previous Close'];
+            document.getElementById(stock + '_mcap').innerHTML = stock_detail['Market Cap'];
+            var change = document.getElementById(stock + '_price').innerHTML - document.getElementById(stock + '_prevclose').innerHTML;
+            change = Number((change).toFixed(4));
+            if (change > 0) {
+              document.getElementById(stock + '_change').style.color = "green";
+              document.getElementById(stock + '_change').innerHTML = "+" + change;
+            } else if (change < 0) {
+              document.getElementById(stock + '_change').style.color = "red";
+              document.getElementById(stock + '_change').innerHTML = change;
+            }
+        }
+    }
+    
+</script>
+
+{% endblock custom-js %}
