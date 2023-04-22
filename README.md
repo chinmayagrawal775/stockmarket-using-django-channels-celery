@@ -29,7 +29,7 @@ This Real-Time Stock Market Price Checking App Built Using Django, where user ca
 
 ## Demo Of Application
 To Watch the Live Demo Of Application click on the Below Given Link.
-[View Demo](https://twitter.com/Chinmay_775/) 🚀.
+[View Demo](https://www.linkedin.com/posts/chinmayagrawal775_python-django-djangodeveloper-activity-7055530943628947456-CglY) 🚀.
 
 ### Here Are Some ScreenShots of The Application
 
