@@ -1,25 +1,25 @@
-# Real-Time Stock Market Price Cheking App Built Using Django, Celery, Django-Channels, WebSockets.
+# Real-Time Stock Market Price Checking App Built Using Django, Celery, Django-Channels, WebSockets.
 
 ![Made with love in India](https://madewithlove.now.sh/in?heart=true&colorA=%232543d4&colorB=%23f58f00&template=for-the-badge)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
 ## About Project 📄
-This Real-Time Stock Market Price Cheking App Built Using Django, where user can select the one or multiple stocks from the list and can check their price in realtime which updates frequently. It Store the User Session ID in the databse on temporary basis. Session ids are further used to send data to user.
+This Real-Time Stock Market Price Checking App Built Using Django, where user can select the one or multiple stocks from the list and can check their price in Real-time which updates frequently. It Store the User Session ID in the database on temporary basis. Session ids are further used to send data to user.
 
 ## Project Functionalities ⚙
   - No Login/Signup required.
   - Select the Stocks to Watch for.
-  - Click on `Submit` button to see their realtime prices.
+  - Click on `Submit` button to see their Real-time prices.
   - Click on `View Details` button to see more details of the given Stock.
-  - `Django-Sessions` `to track the User Selected Stocks on a temporary basis.
+  - `Django-Sessions` to track the User Selected Stocks on a temporary basis.
 
 ## Technologies Used 👨‍💻
 - `Django` - For Coding Backend of Application.
 - `Django-Celery` - To Add the tasks in the Queue.
 - `Celery-beat` - To add tasks to Queue
 - `Memurai/Redis` - It is used as a Message Broker & For Adding a Django Channel Layer in Backend.
-- `Django-Channels` - For using `WebScokets` to esablish real-time Communication, to update the Stock Price Regularly.
+- `Django-Channels` - For using `WebScokets` to establish Real-time Communication, to update the Stock Price Regularly.
 - `SQLite` - Used this Default DataBase for Storing Data on temporary basis.
 - `DTL` - Django Template Language for Building Dynamic Pages.
 - `JavaScript` - For Integrating Additional functionalities in Project.
