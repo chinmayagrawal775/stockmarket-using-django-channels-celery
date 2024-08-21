@@ -34,11 +34,10 @@ feedparser==6.0.10
 hyperlink==21.0.0
 idna==3.4
 importlib-metadata==6.5.1
-incremental==22.10.0
 kombu==5.2.4
-lxml==4.9.2
+lxml==4.9.3
 msgpack==1.0.5
-numpy==1.24.2
+numpy==1.26.4
 pandas==1.5.3
 parse==1.19.0
 prompt-toolkit==3.0.38
@@ -63,7 +62,6 @@ soupsieve==2.4.1
 sqlparse==0.4.4
 tqdm==4.65.0
 Twisted==22.10.0
-twisted-iocpsupport==1.0.3
 txaio==23.1.1
 typing_extensions==4.5.0
 tzdata==2023.3
