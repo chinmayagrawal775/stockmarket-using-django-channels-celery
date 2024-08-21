@@ -7,9 +7,9 @@ attrs==23.1.0
 autobahn==23.1.2
 Automat==22.10.0
 beautifulsoup4==4.12.2
-billiard==3.6.4.0
+billiard==4.2.0
 bs4==0.0.1
-celery==5.2.7
+celery==5.4.0
 certifi==2022.12.7
 cffi==1.15.1
 channels==3.0.5
@@ -21,7 +21,7 @@ click-plugins==1.1.1
 click-repl==0.2.0
 colorama==0.4.6
 constantly==15.1.0
-cron-descriptor==1.2.35
+cron_descriptor==1.2.35
 cryptography==40.0.2
 cssselect==1.2.0
 daphne==3.0.2
@@ -34,7 +34,8 @@ feedparser==6.0.10
 hyperlink==21.0.0
 idna==3.4
 importlib-metadata==6.5.1
-kombu==5.2.4
+incremental==24.7.2
+kombu==5.4.0
 lxml==4.9.3
 msgpack==1.0.5
 numpy==1.26.4
@@ -55,6 +56,7 @@ redis==4.5.4
 requests==2.28.2
 requests-html==0.10.0
 service-identity==21.1.0
+setuptools==73.0.0
 sgmllib3k==1.0.0
 simplejson==3.19.1
 six==1.16.0
@@ -63,13 +65,14 @@ sqlparse==0.4.4
 tqdm==4.65.0
 Twisted==22.10.0
 txaio==23.1.1
-typing_extensions==4.5.0
+typing_extensions==4.12.2
 tzdata==2023.3
 urllib3==1.26.15
-vine==5.0.0
+vine==5.1.0
 w3lib==2.1.1
 wcwidth==0.2.6
 websockets==10.4
+wheel==0.44.0
 yahoo-fin==0.8.9.1
 zipp==3.15.0
 zope.interface==6.0
